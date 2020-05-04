@@ -8,8 +8,11 @@ import dash_html_components as html
 from  dash.dependencies import Input,Output
 import plotly.express as px
 
+# here we upload our dataset using pandas then we store its columns 
 df = pd.read_csv('patients-maroc.csv')
 columns = df.columns
+
+# we create an instance of dash then we add the elements to be displayed 
 app = dash.Dash()
 app.layout = html.Div([
                         html.Div([
@@ -31,6 +34,8 @@ app.layout = html.Div([
                         dcc.Graph(id='chart')
             ],style={'padding':'10%'})
 
+# i used a decorator to call update_graph function which takes three arguments the names 
+  # of the columns to plot with the plot's type
 @app.callback(Output('chart','figure'),
              [Input('xaxis','value'),
              Input('yaxis','value'),
